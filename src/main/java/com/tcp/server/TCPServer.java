@@ -1,20 +1,21 @@
 package com.tcp.server;
 
-import com.tcp.server.handlers.TCPClientHandler;
+import com.tcp.server.models.TubeList;
+import com.tcp.server.schedulers.Scheduler;
+import com.tcp.server.schedulers.SimpleJobScheduler;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TCPServer {
 
-  private ServerSocket server;
   public TCPServer(String ipAddress) throws Exception {
     this.server = new ServerSocket(0, 1, InetAddress.getByName(ipAddress));
+    tubeList = new TubeList();
+    scheduler = new SimpleJobScheduler();
   }
 
   private void listen() throws Exception {
@@ -26,20 +27,13 @@ public class TCPServer {
         DataInputStream dis = new DataInputStream(socket.getInputStream());
         DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
         System.out.println("Assigning new thread for this client");
-        Thread t = new TCPClientHandler(dis, dos, socket);
-        t.start();
+        Thread connection = new TCPClientConnection(dis, dos, socket, tubeList, scheduler);
+        connection.start();
       } catch (Exception e){
         socket.close();
         e.printStackTrace();
       }
     }
-//    String clientAddress = client.getInetAddress().getHostAddress();
-//    System.out.println("\r\nNew connection from " + clientAddress);
-//    BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-//
-//    while ( (data = in.readLine()) != null ) {
-//      System.out.println("\r\nMessage from " + clientAddress + ": " + data);
-//    }
   }
 
   public InetAddress getSocketAddress() {
@@ -58,4 +52,9 @@ public class TCPServer {
 
     app.listen();
   }
+
+  private TubeList tubeList;
+  private Scheduler scheduler;
+  private ServerSocket server;
+  private static final Integer PORT = 15001;
 }
