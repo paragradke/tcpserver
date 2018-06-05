@@ -13,10 +13,7 @@ import java.util.Random;
 public class SimpleJobScheduler implements Scheduler {
 
   public Job schedule(WatchList watchList) {
-    System.out.println("SimpleJobScheduler : schedule");
     Tube tube = getRandomTube(watchList);
-    System.out.println("Random Tube : "+ tube.getName());
-    tube.print();
     Job job = tube.getNextJob();
     if (job == null) {
       try {
@@ -26,15 +23,12 @@ public class SimpleJobScheduler implements Scheduler {
         e.printStackTrace();
       }
     }
-    System.out.println("Random Job : "+ job.getBody());
     return job;
   }
 
   private Tube getRandomTube(final WatchList watchList) {
     while (true) {
       List<Tube> list = new ArrayList(watchList.getTubes());
-      //System.out.println(list.get(0).getName());
-      //dump(watchList);
       if (list.size() == 1 && !list.isEmpty()) {
         return list.get(0);
       } else if (list.size() == 0) {

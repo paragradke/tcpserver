@@ -16,8 +16,8 @@ public class DeleteCommandHandler extends CommandHandler {
                               final Scheduler scheduler,
                               final WatchList watchList) {
     super(dataInputStream, dataOutputStream, scheduler, watchList);
-    SUCCESS_RESPONSE = "DELETED ";
-    ERROR_RESPONSE = "NOT FOUND ";
+    SUCCESS_RESPONSE = "DELETED";
+    ERROR_RESPONSE = "NOT_FOUND";
   }
 
   public String handleCommand() throws IOException {

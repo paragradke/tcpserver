@@ -54,6 +54,8 @@ public class TCPClientConnection extends Thread {
         } catch(IOException ex){
           ex.printStackTrace();
         }
+      } catch (UnsupportedOperationException e) {
+        continue;
       }
     }
   }
