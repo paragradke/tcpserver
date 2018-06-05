@@ -36,9 +36,14 @@ public class TCPClientConnection extends Thread {
 
     while (true) {
       try {
-        dataOutputStream.writeUTF("Commands? [use | put | watch | reserve | delete ]..\n"+"Type 'Exit' to terminate connection.");
+        dataOutputStream.writeUTF("Commands? [use | put | watch | reserve | delete ]..\n" + "Type 'Exit' to terminate connection.");
         command = dataInputStream.readUTF();
 
+        if (command.equals("Exit")) {
+          dataOutputStream.writeUTF("Bye");
+          this.socket.close();
+          System.out.println("Closing connection for socket "+ socket);
+        }
         CommandHandler commandHandler = commandHandlerFactory.getCommandHandler(command);
         response = commandHandler.handleCommand();
         dataOutputStream.writeUTF(response);

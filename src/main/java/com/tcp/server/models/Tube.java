@@ -51,6 +51,17 @@ public class Tube {
     return jobs.isEmpty();
   }
 
+  public boolean removeJob(final String id) {
+    Job toBeRemoved = null;
+    for (Job job: jobs) {
+      if (job.getId().equals(id)) {
+        toBeRemoved = job;
+        break;
+      }
+    }
+    return toBeRemoved == null ? false : jobs.remove(toBeRemoved);
+  }
+
   public void print() {
     for (Job job: jobs) {
       System.out.println("id: " + job.getId() + " value: " + job.getBody());

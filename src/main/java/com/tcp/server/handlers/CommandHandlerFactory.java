@@ -36,9 +36,6 @@ public class CommandHandlerFactory {
       case "delete" :
           return new DeleteCommandHandler(this.dataInputStream, this.dataOutputStream, scheduler, watchList);
 
-      case "Exit" :
-          return new ExitCommandHandler(this.dataInputStream, this.dataOutputStream, scheduler, watchList);
-
       default:
         throw new UnsupportedOperationException("This command is currently not supported by the server");
     }
