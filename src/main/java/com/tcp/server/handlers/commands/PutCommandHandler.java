@@ -25,7 +25,7 @@ public class PutCommandHandler extends CommandHandler {
     final Job job = new Job(jobBody);
     final Tube currentTube = watchList.getProducerDefaultTube();
     currentTube.putJob(job);
-    return SUCCESS_RESPONSE + job.getId();
+    return SUCCESS_RESPONSE + job.getId() + RESPONSE_SENTINAL;
   }
 
 }

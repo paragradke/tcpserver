@@ -1,7 +1,6 @@
 package com.tcp.server.handlers.commands;
 
 import com.tcp.server.handlers.CommandHandler;
-import com.tcp.server.models.Job;
 import com.tcp.server.models.Tube;
 import com.tcp.server.models.WatchList;
 import com.tcp.server.schedulers.Scheduler;
@@ -26,8 +25,8 @@ public class WatchCommandHandler extends CommandHandler {
     if (tube == null) {
       tube = new Tube(tubeName);
     }
-    Tube newTube = watchList.addTubeToWatchList(tube);
-    return SUCCESS_RESPONSE + watchList.getSize();
+    watchList.addTubeToWatchList(tube);
+    return SUCCESS_RESPONSE + watchList.getSize() + RESPONSE_SENTINAL;
   }
 
 }

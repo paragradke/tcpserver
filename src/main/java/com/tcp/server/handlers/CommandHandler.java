@@ -28,4 +28,5 @@ public abstract class CommandHandler {
   protected final WatchList watchList;
   protected String SUCCESS_RESPONSE = "";
   protected String ERROR_RESPONSE = "";
+  protected String RESPONSE_SENTINAL = "\r\n";
 }

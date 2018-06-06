@@ -24,7 +24,7 @@ public class DeleteCommandHandler extends CommandHandler {
     final String jobId = dataInputStream.readUTF();
     final Tube currentTube = watchList.getProducerDefaultTube();
     boolean result = currentTube.removeJob(jobId);
-    return result? SUCCESS_RESPONSE : ERROR_RESPONSE;
+    return (result? SUCCESS_RESPONSE : ERROR_RESPONSE)+RESPONSE_SENTINAL;
   }
 
 }

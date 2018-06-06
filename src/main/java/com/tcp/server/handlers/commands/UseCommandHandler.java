@@ -27,7 +27,7 @@ public class UseCommandHandler extends CommandHandler {
       watchList.getTubeList().addTube(tube);
     }
     watchList.setProducerDefaultTube(tube);
-    return SUCCESS_RESPONSE + tube.getName();
+    return SUCCESS_RESPONSE + tube.getName() + RESPONSE_SENTINAL;
   }
 
 }

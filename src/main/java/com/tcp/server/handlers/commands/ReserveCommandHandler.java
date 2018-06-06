@@ -20,7 +20,7 @@ public class ReserveCommandHandler extends CommandHandler {
   public String handleCommand() {
     System.out.println("ReserveCommandHandler : handleCommand");
     Job job = scheduler.schedule(watchList);
-    return SUCCESS_RESPONSE + job.getId() + " "+ job.getSize() + '\n' + job.getBody();
+    return SUCCESS_RESPONSE + job.getId() + " "+ job.getSize() + RESPONSE_SENTINAL + job.getBody()+RESPONSE_SENTINAL;
   }
 
 }
