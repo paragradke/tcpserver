@@ -1,5 +1,13 @@
 # A TCP Queue server
 
+
+# To Build
+$mvn clean package
+
+#To Run
+$java -cp target/tcpserver-1.0-SNAPSHOT.jar com.tcp.server.TCPServer 127.0.0.1
+ 
+
 It supports following commands
 
 # use
