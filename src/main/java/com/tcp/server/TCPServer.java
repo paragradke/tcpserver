@@ -13,7 +13,7 @@ import java.net.Socket;
 public class TCPServer {
 
   public TCPServer(String ipAddress) throws Exception {
-    this.server = new ServerSocket(0, 1, InetAddress.getByName(ipAddress));
+    this.server = new ServerSocket(PORT, 1, InetAddress.getByName(ipAddress));
     tubeList = new TubeList();
     scheduler = new SimpleJobScheduler();
   }
